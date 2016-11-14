@@ -1,30 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Blank</title>
+    <title>Diane's Personal API</title>
 
     <!-- STYLESHEETS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/styles.css">
+    <!-- <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
 
     <!-- VENDOR SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
     <!-- APPLICATION SCRIPTS -->
     <script src="/scripts/app.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <h1>Under Construction</h1>
-          <h4><a href="/api">Read My API Documentation</a></h4>
+</head>
+
+<body>
+
+    <header>
+        <h1 class="text-center">Diane's Personal API</h1>
+        <br>
+    </header>
+
+    <div class="col-md-10 col-md-offset-1" id="content">
+
+
+
+        <div class="row">
+            <hr>
+            <div class="col-md-5 col-sm-5 col-xs-5">
+                <div id="about-me-wrapper">
+                    <div class="about-me-div" id="about-me-div1">
+                        <img src="../images/profile.jpg" id="vertical-headshot">
+                    </div>
+                    <div class="about-me-div" id="about-me-div2">
+                        <p>Hi, my name is Diane LIU.</p>
+                        <p>Welcome to my personal API!</p>
+                    </div>
+                    <!-- <form class="form-inline" id="newPlaceForm">
+                        <label for="title">Do you have a place you would recommend staying at?</label>
+                        <br>
+                        <div class="form-group">
+                            <label for="title">City</label>
+                            <input type="text" class="form-control" name="title" placeholder="city">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Description</label>
+                            <input type="text" class="form-control" name="description" placeholder="description">
+                        </div>
+                        <br> -->
+                    <!-- <div class="form-group">
+            <label for="title">Characters</label>
+            <input type="text" class="form-control" name="characters[name]" placeholder="Book character 1">
+            <input type="text" class="form-control" name="characters[name]" placeholder="Book character 2">
+          </div> -->
+                    <!-- <button type="submit" class="btn btn-default">Submit</button>
+                    </form> -->
+
+                    <p>Do you have a place you would recommend staying at? <b>Let's add it! </b></p>
+                    <br><br>
+
+
+                    <button class="btn btn-default" data-toggle="collapse" data-target="#create-place">Add New Place</button>
+                    <form class="form collapse" id="create-place">
+
+                        <br>
+                        <div class="form-group">
+                            <input type="text" name="city" class="form-control" placeholder="City">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="state" class="form-control" placeholder="State">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="country" class="form-control" placeholder="Country">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="image" class="form-control" placeholder="Image-URL">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="description" class="form-control" placeholder="Description">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-default btn-block" value="Submit">
+                        </div>
+                    </form>
+                    <br><br>
+
+                </div>
+
+
+            </div>
+            <div class="col-md-7 col-sm-7 col-xs-7">
+
+                <div id='placeTarget'>
+                    <!-- handlebars template -->
+                    <script id="places-template" type="text/x-handlebars-template">
+                        {{#each places}}
+                        <div class="place row" data-id="{{_id}}">
+                        <p>
+                            <b>{{city}}</b>,
+                            <i>{{state}},</i>
+                            <i>{{country}}</i>
+
+
+                            <br>
+                            <b>Description:</b> {{description}}
+                            <div>
+                                <img src={{image}} class="placeLogo">
+                            </div>
+                            <br>
+                            <!-- <b>Characters:</b> {{#each characters}} {{name}} {{/each}}
+                            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id={{_id}}>Delete</button> -->
+                            <div class="pull-right">
+                                <!-- pencil icon to toggle update form -->
+                                <a href="javascript:void(0)" data-toggle="collapse" data-target="#update-{{_id}}">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+
+                                <!-- trash can icon to delete todo -->
+                                <a href="javascript:void(0)" class="delete-place">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                            </div>
+
+                            <div class="collapse" id="update-{{_id}}">
+                          <br>
+                          <form class="form update-place">
+                              <input type="text" name="city" class="form-control input-sm" placeholder="City" value="{{city}}">
+                              <input type="text" name="state" class="form-control input-sm" placeholder="State" value="{{state}}">
+                              <input type="text" name="country" class="form-control input-sm" placeholder="Country" value="{{country}}">
+                              <input type="text" name="image" class="form-control input-sm" placeholder="Image URL" value="{{image}}">
+                              <input type="text" name="description" class="form-control input-sm" placeholder="Description" value="{{description}}">
+                              <input type="submit" class="btn btn-default btn-block" value="Update">
+                          </form>
+                        </div>
+
+
+                        </p>
+                        <!-- <form class="form-inline" id="addCharacterForm" data-id={{_id}}>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" placeholder="Book character">
+                            </div>
+                            <button type="submit" class="btn btn-default">Add character</button>
+                        </form> -->
+                      </div>
+                      <hr>
+
+                        {{/each}}
+                    </script>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </body>
+    </div>
+</body>
+
 </html>
