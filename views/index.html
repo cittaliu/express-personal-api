@@ -99,62 +99,62 @@
             </div>
             <div class="col-md-7 col-sm-7 col-xs-7">
 
-                <div id='placeTarget'>
+                <ul id='placeTarget'>
                     <!-- handlebars template -->
                     <script id="places-template" type="text/x-handlebars-template">
                         {{#each places}}
                         <div class="place row" data-id="{{_id}}">
-                        <p>
-                            <b>{{city}}</b>,
-                            <i>{{state}},</i>
-                            <i>{{country}}</i>
+                            <p>
+                                <b>{{city}}</b>,
+                                <i>{{state}},</i>
+                                <i>{{country}}</i>
 
 
-                            <br>
-                            <b>Description:</b> {{description}}
-                            <div>
-                                <img src={{image}} class="placeLogo">
-                            </div>
-                            <br>
-                            <!-- <b>Characters:</b> {{#each characters}} {{name}} {{/each}}
+                                <br>
+                                <b>Description:</b> {{description}}
+                                <div>
+                                    <img src={{image}} class="logo">
+                                </div>
+                                <br>
+                                <!-- <b>Characters:</b> {{#each characters}} {{name}} {{/each}}
                             <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id={{_id}}>Delete</button> -->
-                            <div class="pull-right">
-                                <!-- pencil icon to toggle update form -->
-                                <a href="javascript:void(0)" data-toggle="collapse" data-target="#update-{{_id}}">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </a>
+                                <div class="pull-right">
+                                    <!-- pencil icon to toggle update form -->
+                                    <a href="javascript:void(0)" data-toggle="collapse" data-target="#update-{{_id}}">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
 
-                                <!-- trash can icon to delete todo -->
-                                <a href="javascript:void(0)" class="delete-place">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                </a>
-                            </div>
+                                    <!-- trash can icon to delete todo -->
+                                    <a href="javascript:void(0)" class="delete-place">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </div>
 
-                            <div class="collapse" id="update-{{_id}}">
-                          <br>
-                          <form class="form update-place">
-                              <input type="text" name="city" class="form-control input-sm" placeholder="City" value="{{city}}">
-                              <input type="text" name="state" class="form-control input-sm" placeholder="State" value="{{state}}">
-                              <input type="text" name="country" class="form-control input-sm" placeholder="Country" value="{{country}}">
-                              <input type="text" name="image" class="form-control input-sm" placeholder="Image URL" value="{{image}}">
-                              <input type="text" name="description" class="form-control input-sm" placeholder="Description" value="{{description}}">
-                              <input type="submit" class="btn btn-default btn-block" value="Update">
-                          </form>
-                        </div>
+                                <div class="collapse" id="update-{{_id}}">
+                                    <br>
+                                    <form class="form-inline update-place">
+                                        <input type="text" name="city" class="form-control input-sm" placeholder="City" value="{{city}}">
+                                        <input type="text" name="state" class="form-control input-sm" placeholder="State" value="{{state}}">
+                                        <input type="text" name="country" class="form-control input-sm" placeholder="Country" value="{{country}}">
+                                        <input type="text" name="image" class="form-control input-sm" placeholder="Image URL" value="{{image}}">
+                                        <input type="text" name="description" class="form-control input-sm" placeholder="Description" value="{{description}}">
+                                        <input type="submit" class="btn btn-default btn-block" value="Update">
+                                    </form>
+                                </div>
 
 
-                        </p>
-                        <!-- <form class="form-inline" id="addCharacterForm" data-id={{_id}}>
+                            </p>
+                            <!-- <form class="form-inline" id="addCharacterForm" data-id={{_id}}>
                             <div class="form-group">
                                 <input type="text" class="form-control" name="name" placeholder="Book character">
                             </div>
                             <button type="submit" class="btn btn-default">Add character</button>
                         </form> -->
-                      </div>
-                      <hr>
-
+                        </div>
+                        <hr>
                         {{/each}}
                     </script>
+                  </ul>
                 </div>
             </div>
         </div>

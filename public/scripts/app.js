@@ -67,27 +67,27 @@ $.get('/api/places', function(response) {
 
   $placesList
 
-      // for update: submit event on `.update-book` form
+      // for update: submit event on `.update-place` form
       .on('submit', '.update-place', function (event) {
         event.preventDefault();
-        // find the todo's id (stored in HTML as `data-id`)
+        // find the place's id (stored in HTML as `data-id`)
         var placeId = $(this).closest('.place').attr('data-id');
 
-        // find the todo to update by its id
-        var placeToUpdate = allPlaces.filter(function (ele) {
-          return ele._id == placeId;
-        })[0];
+        // find the place to update by its id
+        var placeToUpdate = allPlaces.find(function (place) {
+          return place._id == placeId;
+        });
 
         // serialze form data
         var updatedPlace = $(this).serialize();
 
-        // PUT request to update todo
+        // PUT request to update place
         $.ajax({
           method: 'PUT',
           url: '/api/places/'+placeId,
           data: updatedPlace,
-          success: function (response) {
-            allPlaces.splice(allPlaces.indexOf(placeToUpdate), 1, response);
+          success: function (json) {
+            allPlaces.splice(allPlaces.indexOf(placeToUpdate), 1, json);
             render();
           }
         });
@@ -99,20 +99,20 @@ $.get('/api/places', function(response) {
         // find the todo's id (stored in HTML as `data-id`)
         var placeId = $(this).closest('.place').attr('data-id');
 
-        // find the todo to delete by its id
+        // find the place to delete by its id
         var placeToDelete = allPlaces.find(function (ele) {
           return ele._id == placeId;
         })[0];
 
-        // DELETE request to delete todo
+        // DELETE request to delete place
         $.ajax({
           type: 'DELETE',
           url: '/api/places/' + placeId,
           success: function(json) {
-            // remove deleted todo from all todos
+            // remove deleted place from all places
             allPlaces.splice(allPlaces.indexOf(placeToDelete), 1);
 
-            // render all todos to view
+            // render all places to view
             render();
           }
         });
